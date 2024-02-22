@@ -13,10 +13,10 @@ namespace App
             string inputText = Console.ReadLine();
 
             TextProcessor textProcessor = new TextProcessor();
-            textProcessor.ProcessText(inputText);
+            string result = textProcessor.ProcessText(inputText);
 
-            
-          
+            Console.WriteLine("Результат:");
+            Console.WriteLine(result);
         }
     }
 
@@ -24,7 +24,7 @@ namespace App
 
     public class TextProcessor
     {
-        public void ProcessText(string input)
+        public string ProcessText(string input)
         {
             string[] words = input.Split(' ');
             for (int i = 0; i < words.Length; i++)
@@ -32,21 +32,18 @@ namespace App
                 if (words[i].Length % 2 == 0)
                 {
                     // Удалить слово с четным числом символов
-                    words[i] = null;
+                    words[i] = "";
                 }
                 else
                 {
                     // Продублировать слово с нечетным числом символов
-                    words[i] = words[i] + " " + words[i]+" ";
+                    words[i] = words[i] + " " + words[i];
                     // Заменить все вхождения букв 'd' на 't'
                     words[i] = words[i].Replace('d', 't');
                 }
-                Console.WriteLine("-----------");
-                Console.WriteLine(words[i]);
-              
             }
-            String.Join(" ", words);
-            Console.WriteLine(words);
+
+            return string.Join(" ", words);
         }
     }
 }
